@@ -12,6 +12,10 @@ describe("Game", function() {
     it("should be able to start game with number of pairs", function() {
       expect(new MemoryGame.Game(6).remainingPairs()).toEqual(6);
     });
+
+    it("should start with score 0", function() {
+      expect(new MemoryGame.Game(6).score()).toEqual(0);
+    });
   });
 
   describe("board", function(){
@@ -20,10 +24,27 @@ describe("Game", function() {
       expect(new MemoryGame.Game().board()).toBeDefined;
     });
 
-    it("should have pieces on the board", function() {
-      game = new MemoryGame.Game(2)
-      expect(game.board().length).toEqual(2);
-      expect(game.board()[0] instanceof MemoryGame.Piece).toBeTruthy()
+
+    it("content should be question mark at the beginnig", function() {
+      game = new MemoryGame.Game(1)
+      expect(game.board()[0]).toEqual("?")
+      expect(game.board()[1]).toEqual("?")
+    });
+
+  });
+
+  describe("Playing Game", function(){
+    it("should change board when picking a piece", function(){
+      //var myBoard = new MemoryGame.Board
+      //spyOn(myBoard, 'play').andReturn(true)
+      //spyOn(MemoryGame, 'Board').andReturn(myBoard);
+      game = new MemoryGame.Game(1);
+      game.play(0);
+      expect(game.board()[0]).toEqual(1)
+      expect(game.board()[1]).toEqual("?")
+      game.play(1);
+      expect(game.board()[0]).toEqual(1)
+      expect(game.board()[1]).toEqual(1)
     });
 
   });
