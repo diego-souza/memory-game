@@ -2,38 +2,25 @@ var MemoryGame = MemoryGame || {};
 
 MemoryGame.Game = function (numberOfPairs){
   var self = this;
-  self.pairs = typeof numberOfPairs !== 'undefined' ? numberOfPairs : 5;
-  self.gameBoard = new MemoryGame.Board;
-  self.gameScore = 0;
+  self.numberOfPairs = typeof numberOfPairs !== 'undefined' ? numberOfPairs : 5;
+  self.pieces = [new MemoryGame.Piece(1), new MemoryGame.Piece(1)];
+  self.score = 0;
 
-  self.score = function (){
-    return self.gameScore;
+  self.getScore = function (){
+    return self.score;
   }
 
   self.remainingPairs = function (){
-    return self.pairs;
+    return self.numberOfPairs;
   }
 
-  self.board = function (){
-    return self.gameBoard.space();
-  }
-
-  self.play = function(pieceNumber){
-    return self.gameBoard.play(pieceNumber);
-  }
-}
-
-MemoryGame.Board = function(){
-  var self = this;
-  self.pieces = [new MemoryGame.Piece(1), new MemoryGame.Piece(1)];
-  self.space = function(){
+  self.getBoard = function (){
     returnArray = [];
-   self.pieces.forEach(function(x){ returnArray.push(x.getContent()) })
+    self.pieces.forEach(function(x){ returnArray.push(x.getContent()) })
     return returnArray;
   }
 
   self.play = function(pieceNumber){
-    //pinnedPieces = self.pieces.filter(MemoryGame.Piece.isPinned)
-    self.pieces[pieceNumber].flip();
+    self.pieces[pieceNumber].select();
   }
 }

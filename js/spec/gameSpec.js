@@ -14,21 +14,21 @@ describe("Game", function() {
     });
 
     it("should start with score 0", function() {
-      expect(new MemoryGame.Game(6).score()).toEqual(0);
+      expect(new MemoryGame.Game(6).getScore()).toEqual(0);
     });
   });
 
   describe("board", function(){
 
     it("should have a board", function() {
-      expect(new MemoryGame.Game().board()).toBeDefined();
+      expect(new MemoryGame.Game().getBoard()).toBeDefined();
     });
 
 
     it("content should be question mark at the beginnig", function() {
       game = new MemoryGame.Game(1);
-      expect(game.board()[0]).toEqual("?");
-      expect(game.board()[1]).toEqual("?");
+      expect(game.getBoard()[0]).toEqual("?");
+      expect(game.getBoard()[1]).toEqual("?");
     });
 
   });
@@ -40,18 +40,18 @@ describe("Game", function() {
       //spyOn(MemoryGame, 'Board').andReturn(myBoard);
       game = new MemoryGame.Game(1);
       game.play(0);
-      expect(game.board()[0]).toEqual(1);
-      expect(game.board()[1]).toEqual("?");
+      expect(game.getBoard()[0]).toEqual(1);
+      expect(game.getBoard()[1]).toEqual("?");
       game.play(1);
-      expect(game.board()[0]).toEqual(1);
-      expect(game.board()[1]).toEqual(1);
+      expect(game.getBoard()[0]).toEqual(1);
+      expect(game.getBoard()[1]).toEqual(1);
     });
 
     it("should get point after playing two pieces of the same value", function(){
       game = new MemoryGame.Game(1);
       game.play(0);
       game.play(1);
-      expect(game.score()).toEqual(1);
+      expect(game.getScore()).toEqual(1);
     });
   });
 
