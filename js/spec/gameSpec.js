@@ -47,6 +47,12 @@ describe("Game", function() {
       expect(game.board()[1]).toEqual(1)
     });
 
+    it("should get point after playing two pieces of the same value", function(){
+      game = new MemoryGame.Game(1);
+      game.play(0);
+      game.play(1);
+      expect(game.score()).toEqual(1)
+    });
   });
 
 });

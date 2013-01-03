@@ -28,31 +28,12 @@ MemoryGame.Board = function(){
   self.pieces = [new MemoryGame.Piece(1), new MemoryGame.Piece(1)]
   self.space = function(){
     returnArray = []
-    self.pieces.forEach(function(x){ returnArray.push(x.content()) })
+   self.pieces.forEach(function(x){ returnArray.push(x.getContent()) })
     return returnArray
   }
 
   self.play = function(pieceNumber){
-    self.pieces[pieceNumber].turned = true
-  }
-}
-
-MemoryGame.Piece = function(value){
-  var self = this
-  self.turned = false
-  self.selected = false
-  self.value = value
-
-  self.isSelected = function(piece){
-    return piece.selected
-  }
-
-  self.content = function(){
-    if (self.turned){
-      return self.value
-    }
-    else {
-      return "?"
-    }
+    //pinnedPieces = self.pieces.filter(MemoryGame.Piece.isPinned)
+    self.pieces[pieceNumber].flip()
   }
 }
