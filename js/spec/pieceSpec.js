@@ -11,6 +11,10 @@ describe("Piece", function(){
     expect(piece.isSelected()).not.toBeTruthy();
   });
 
+  it("should not be pinned by default", function(){
+    expect(piece.isPinned()).not.toBeTruthy();
+  });
+
   it("should have the value passed as param", function(){
     expect(piece.getValue()).toEqual(1);
   });
@@ -44,7 +48,7 @@ describe("Piece", function(){
     });
   });
 
-  describe("Not Selected", function(){
+  describe("Not selected", function(){
     it("should not be selected", function(){
       expect(piece.isSelected()).not.toBeTruthy();
     });
@@ -87,6 +91,21 @@ describe("Piece", function(){
       piece.pin();
       expect(piece.isFlipped()).toBeTruthy();
       expect(piece.isSelected()).not.toBeTruthy();
+      expect(piece.isPinned()).toBeTruthy();
+    });
+  });
+
+  describe("Not pinned", function(){
+    it("should not be selected", function(){
+      expect(piece.isPinned()).not.toBeTruthy();
+    });
+  });
+
+  describe("Pinned", function(){
+    it("should be selected", function(){
+      piece.select();
+      piece.pin();
+      expect(piece.isPinned()).toBeTruthy();
     });
   });
 });

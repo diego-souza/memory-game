@@ -18,6 +18,10 @@ MemoryGame.Piece = function(value){
     return self.selected;
   }
 
+  self.isPinned = function(){
+    return self.flipped && !self.selected;
+  }
+
   self.matches = function(piece){
     return self.value == piece.value;
   }
