@@ -35,3 +35,11 @@ body
 }
 
 span.clear { clear: left; display: block; }
+
+.selected {
+  background-color: blue;
+}
+
+.pinned {
+  background-color: green;
+}

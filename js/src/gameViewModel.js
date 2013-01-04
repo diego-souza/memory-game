@@ -26,6 +26,7 @@ function GameViewModel(){
     self.pieces([]);
     self.pieces(self.game.getBoard());
   }
+
 }
 
 g = new GameViewModel()
