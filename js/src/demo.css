@@ -1,0 +1,37 @@
+body
+{
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.board {
+  padding: 0;
+  margin: 2em auto;
+  width: 44em;
+//  float: left;
+}
+
+.piece {
+  border: 2px solid;
+  margin: 10px;
+  text-align: center;
+  vertical-align: middle;
+  width: 20%;
+  min-height: 8em;
+  float: left;
+}
+
+.piece-data {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.parent {
+  width: 100%;
+  margin: 0;
+  text-align: center;
+  height: 10px;
+}
+
+span.clear { clear: left; display: block; }

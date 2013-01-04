@@ -9,6 +9,7 @@ MemoryGame.Game = function (numberOfPairs){
     for (var i=1; i <= self.numberOfPairs; i++) {
       arrayOfPieces.push(new MemoryGame.Piece(i), new MemoryGame.Piece(i));
     }
+    MemoryGame.shuffle(arrayOfPieces)
     return arrayOfPieces
   }
 
@@ -25,7 +26,7 @@ MemoryGame.Game = function (numberOfPairs){
   self.getBoard = function (){
     returnArray = [];
     self.pieces.forEach(function(p){ returnArray.push(p.getContent()) })
-    return returnArray;
+    return self.pieces;
   }
 
   self.getNotFlipped = function (){
@@ -46,8 +47,8 @@ MemoryGame.Game = function (numberOfPairs){
     return returnArray;
   }
 
-  self.play = function(pieceNumber){
-    self.pieces[pieceNumber].select();
+  self.play = function(piece){
+    piece.select();
   }
 
   self.matchingPieces = function(){
@@ -70,4 +71,10 @@ MemoryGame.Game = function (numberOfPairs){
   self.over = function(){
     return self.remainingPairs() == 0
   }
+}
+
+MemoryGame.shuffle = function(arr){
+  arr.sort(function(a,b) {
+    return (0.5 - Math.random());
+  });
 }

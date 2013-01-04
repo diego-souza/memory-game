@@ -26,8 +26,8 @@ describe("Game", function() {
 
       it("content should be question mark at the beginnig", function() {
         game = new MemoryGame.Game(1);
-        expect(game.getBoard()[0]).toEqual("?");
-        expect(game.getBoard()[1]).toEqual("?");
+        expect(game.getBoard()[0].getContent()).toEqual("?");
+        expect(game.getBoard()[1].getContent()).toEqual("?");
       });
 
     });
@@ -37,19 +37,19 @@ describe("Game", function() {
   describe("Playing Game", function(){
     it("should change board when picking a piece", function(){
       game = new MemoryGame.Game(1);
-      game.play(0);
-      expect(game.getBoard()[0]).toEqual(1);
-      expect(game.getBoard()[1]).toEqual("?");
-      game.play(1);
-      expect(game.getBoard()[0]).toEqual(1);
-      expect(game.getBoard()[1]).toEqual(1);
+      game.play(game.getBoard()[0]);
+      expect(game.getBoard()[0].getContent()).toEqual(1);
+      expect(game.getBoard()[1].getContent()).toEqual("?");
+      game.play(game.getBoard()[1]);
+      expect(game.getBoard()[0].getContent()).toEqual(1);
+      expect(game.getBoard()[1].getContent()).toEqual(1);
     });
 
     describe("playing two pieces that matches", function(){
       beforeEach(function(){
         game = new MemoryGame.Game(1);
-        game.play(0);
-        game.play(1);
+        game.play(game.getBoard()[0]);
+        game.play(game.getBoard()[1]);
         game.finishTurn();
       });
 
@@ -69,17 +69,17 @@ describe("Game", function() {
 
     });
 
-    describe("playing two pieces doesn't match", function(){
+    describe("playing two pieces that doesn't match", function(){
       beforeEach(function(){
         game = new MemoryGame.Game(2);
         board = game.getBoard()
-        if (board[0] != board[1]){
-          game.play(0);
-          game.play(1);
+        if (!board[0].matches(board[1])){
+          game.play(board[0]);
+          game.play(board[1]);
         }
         else {
-          game.play(0);
-          game.play(2);
+          game.play(board[0]);
+          game.play(board[2]);
         }
         game.finishTurn();
       });
